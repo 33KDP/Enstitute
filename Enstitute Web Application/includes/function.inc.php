@@ -1,8 +1,8 @@
 <?php
 
-function emptyInputSignup($name,$email,$username,$pwd,$pwdrepeat){
+function emptyInputSignup($fname,$lname,$email,$pwd,$pwdrepeat,$user_type){
     $reuslt;
-    if(empty($name) || empty($email) || empty($username) || empty($pwd) || empty($pwdrepeat)){
+    if(empty($fname) || empty($lname) || empty($email)  || empty($pwd) || empty($pwdrepeat) || empty($user_type)){
         $reuslt = true;
     }else{
         $reuslt = false;
@@ -40,7 +40,7 @@ function pwdnotMatch($pwd,$pwdrepeat){
     return $reuslt;
 }
 
-function UidExists($conn,$username,$email){
+function UidExists($conn,$email){
 
     $sql="SELECT * FROM users WHERE usersUid = :un OR usersEmail = :ue";
     $stmt = $conn->prepare($sql);
@@ -58,31 +58,9 @@ function UidExists($conn,$username,$email){
         return $reuslt;
     }
 
-    /*  -------------------- BY mysqli -------------------------------------
-    $sql = "SELECT * FROM users WHERE usersUid = ? OR usersEmail = ?;" ;
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sql)){
-        header("location: ../index.php?error=stmtfailed");
-        exit(); 
-    }
-
-    mysqli_stmt_bind_param($stmt, "ss", $username,$email); //bindparameters
-    mysqli_stmt_execute($stmt);
-
-    $resultData = mysqli_stmt_get_result($stmt); //get the results what we prepare in line 45
-
-    if($row = mysqli_fetch_assoc($resultData)){
-        return $row;
-    }else{
-        $reuslt = false;
-        return $reuslt;
-    }
-
-    mysqli_stmt_close($stmt);
-    */
 }
 
-function createUser($conn,$name,$email,$username,$pwd){
+function createUser($conn,$name,$email,$pwd){
     $sql="INSERT INTO users(usersName,usersEmail,usersUid,userspwd) VALUES(:fname,:uemail,:uname,:upassword)";
     $stmt  = $conn->prepare($sql);
 
@@ -91,7 +69,6 @@ function createUser($conn,$name,$email,$username,$pwd){
     $stmt->execute(array(
         ':fname' => $name,
         ':uemail' => $email,
-        ':uname' =>$username,
         ':upassword' => $hashedpwd)
         );
 
@@ -101,22 +78,6 @@ function createUser($conn,$name,$email,$username,$pwd){
     }else{
         header("location: ../signup.php?error=stmtfailed");
     }
-
-    /*   -------------- by mysqli --------------------------------
-    $sql = "INSERT INTO users(usersName,usersEmail,usersUid,userspwd) VALUES (?,?,?,?)" ;
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sql)){
-        header("location: ../signup.php?error=stmtfailed");
-        exit(); 
-    }
-
-    $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
-
-    mysqli_stmt_bind_param($stmt, "ssss", $name,$email,$username,$hashedpwd);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    */
-
     
 }
 
