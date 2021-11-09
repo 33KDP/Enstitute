@@ -22,19 +22,29 @@
                 <div class="d-flex flex-column text-center">
                 <form action="includes/signup.inc.php" method="post">
                     <div class="form-group">
-                    <input type="text" class="form-control" id="email1" name="name" placeholder="Full name...">
+                    <p>You are a</p>
+                    <input type="radio"  id="student_ut" name="usertype" value="student" onclick="changeContent1();">
+                    <label for="student_ut">Student</label>
+                    <input type="radio" id="tutor_ut" name="usertype" value="tutor" onclick="changeContent2();">
+                    <label for="tutor_ut">Tutor</label>
+                    </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control" id="name1" name="fname" placeholder="first name...">
+                    </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control" id="name2" name="lname" placeholder="last name...">
+                    </div>
+                    <div class="form-group hide" id="grade">
+                    <input type="number" class="form-control" min="1" max="13" step="1" id="name2" name="grade"  placeholder="Grade...">
                     </div>
                     <div class="form-group">
                     <input type="text" class="form-control" id="email1" name="email" placeholder="email...">
                     </div>
                     <div class="form-group">
-                    <input type="text" class="form-control" id="email1" name="uid" placeholder="username...">
-                    </div>
-                    <div class="form-group">
                     <input type="password" class="form-control" id="password1" name="pwd" placeholder="password...">
                     </div>
                     <div class="form-group">
-                    <input type="password" class="form-control" id="password1" name="pwdrepeat" placeholder="repeat password...">
+                    <input type="password" class="form-control" id="password2" name="pwdrepeat" placeholder="repeat password...">
                     </div>
                     <button type="submit" name="submit" class="btn btn-info btn-block btn-round">sigup</button>
                 </form>
