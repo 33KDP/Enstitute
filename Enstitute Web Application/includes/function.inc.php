@@ -1,11 +1,19 @@
 <?php
 
-function emptyInputSignup($fname,$lname,$email,$pwd,$pwdrepeat,$user_type){
+function emptyInputSignup($fname,$lname,$email,$pwd,$pwdrepeat,$user_type,$grade,$distric,$city){
     $reuslt;
-    if(empty($fname) || empty($lname) || empty($email)  || empty($pwd) || empty($pwdrepeat) || empty($user_type)){
+    if( empty($fname) || empty($lname) || empty($email)  || empty($pwd) || empty($pwdrepeat) || empty($user_type) || empty($distric) || empty($city)){
         $reuslt = true;
     }else{
-        $reuslt = false;
+        if($user_type=="student"){
+            if(empty($grade)){
+                $reuslt = true;
+            }else{
+                $reuslt = false;
+            }
+        }else{
+            $reuslt = false;
+        }    
     }
     return $reuslt;
 }
@@ -42,12 +50,11 @@ function pwdnotMatch($pwd,$pwdrepeat){
 
 function UidExists($conn,$email){
 
-    $sql="SELECT * FROM users WHERE usersUid = :un OR usersEmail = :ue";
+    $sql="SELECT * FROM user WHERE email = :ue";
     $stmt = $conn->prepare($sql);
 
 	$stmt -> execute(array(
-		':un' => $_POST['uid'],
-		':ue' => $_POST['email']
+		':ue' => $email
 	));
     $row = $stmt->fetch(pdo::FETCH_ASSOC);
 
@@ -60,17 +67,63 @@ function UidExists($conn,$email){
 
 }
 
-function createUser($conn,$name,$email,$pwd){
-    $sql="INSERT INTO users(usersName,usersEmail,usersUid,userspwd) VALUES(:fname,:uemail,:uname,:upassword)";
-    $stmt  = $conn->prepare($sql);
+function createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$city){
+    if($user_type=="student"){
+        $sql1="INSERT INTO user(usertype_id,email,first_name,last_name,district,city) VALUES(:utype,:uemail,:fname,:lname,:distric,:city)";
+        $stmt1  = $conn->prepare($sql1);
+    
+        $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
+    
+        $stmt1->execute(array(
+            ':utype' => 1,
+            ':uemail' => $email,
+            ':fname' => $fname,
+            ':lname' => $lname,
+            ':distric' => $distric,
+            ':city' => $city)
+            );
 
-    $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
+        $profile_id = $conn->lastInsertId();
 
-    $stmt->execute(array(
-        ':fname' => $name,
-        ':uemail' => $email,
-        ':upassword' => $hashedpwd)
-        );
+        $sql2="INSERT INTO `authentication`(`user_id`,`password`) VALUES(:uida,:upassword)";
+        $stmt2  = $conn->prepare($sql2);
+        $stmt2->execute(array(
+            ':uida' => $profile_id,
+            ':upassword' => $hashedpwd)
+            );
+
+        $sql3="INSERT INTO student(`user_id`,grade) VALUES(:uids,:sgrade)";
+        $stmt3  = $conn->prepare($sql3);
+        $stmt3->execute(array(
+            ':uids' => $profile_id,
+            ':sgrade' => $grade)
+            );
+
+    }else{
+        $sql1="INSERT INTO user(usertype_id,email,first_name,last_name,district,city) VALUES(:utype,:uemail,:fname,:lname,:distric,:city)";
+        $stmt1  = $conn->prepare($sql1);
+    
+        $hashedpwd = password_hash($pwd, PASSWORD_DEFAULT);
+    
+        $stmt1->execute(array(
+            ':utype' => 2,
+            ':uemail' => $email,
+            ':fname' => $fname,
+            ':lname' => $lname,
+            ':distric' => $distric,
+            ':city' => $city)
+            );
+
+        $profile_id = $conn->lastInsertId();
+
+        $sql2="INSERT INTO `authentication`(`user_id`,`password`) VALUES(:uida,:upassword)";
+        $stmt2  = $conn->prepare($sql2);
+        $stmt2->execute(array(
+            ':uida' => $profile_id,
+            ':upassword' => $hashedpwd)
+            );
+    }
+
 
     $profile_id = $conn->lastInsertId();
     if(profile_id){
