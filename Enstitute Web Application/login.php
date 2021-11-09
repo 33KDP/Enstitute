@@ -22,7 +22,7 @@
                 <div class="d-flex flex-column text-center">
                 <form action="includes/login.inc.php" method="post">
                     <div class="form-group">
-                    <input type="text" class="form-control" id="email1" name="uid" placeholder="Username/Email...">
+                    <input type="text" class="form-control" id="email1" name="uemail" placeholder="Email...">
                     </div>
                     <div class="form-group">
                     <input type="password" class="form-control" id="password1" name="pwd" placeholder="password...">
