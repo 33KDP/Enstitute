@@ -38,6 +38,12 @@
                     <input type="number" class="form-control" min="1" max="13" step="1" id="grd" name="grade"  placeholder="Grade...">
                     </div>
                     <div class="form-group">
+                    <input type="text" class="form-control" id="dis" name="district" placeholder="your distric...">
+                    </div>
+                    <div class="form-group">
+                    <input type="text" class="form-control" id="cit" name="city" placeholder="your city...">
+                    </div>
+                    <div class="form-group">
                     <input type="text" class="form-control" id="email1" name="email" placeholder="email...">
                     </div>
                     <div class="form-group">
