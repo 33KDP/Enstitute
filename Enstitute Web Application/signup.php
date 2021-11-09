@@ -23,9 +23,9 @@
                 <form action="includes/signup.inc.php" method="post">
                     <div class="form-group">
                     <p>You are a</p>
-                    <input type="radio"  id="student_ut" name="usertype" value="student" onclick="changeContent1();">
+                    <input type="radio"  id="student_ut" name="usertype" value="student" onclick="show();">
                     <label for="student_ut">Student</label>
-                    <input type="radio" id="tutor_ut" name="usertype" value="tutor" onclick="changeContent2();">
+                    <input type="radio" id="tutor_ut" name="usertype" value="tutor" onclick="hide();">
                     <label for="tutor_ut">Tutor</label>
                     </div>
                     <div class="form-group">
@@ -34,8 +34,8 @@
                     <div class="form-group">
                     <input type="text" class="form-control" id="name2" name="lname" placeholder="last name...">
                     </div>
-                    <div class="form-group hide" id="grade">
-                    <input type="number" class="form-control" min="1" max="13" step="1" id="name2" name="grade"  placeholder="Grade...">
+                    <div class="form-group" id="grade">
+                    <input type="number" class="form-control" min="1" max="13" step="1" id="grd" name="grade"  placeholder="Grade...">
                     </div>
                     <div class="form-group">
                     <input type="text" class="form-control" id="email1" name="email" placeholder="email...">
