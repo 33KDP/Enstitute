@@ -57,6 +57,17 @@ function UidExists($conn,$email){
 		':ue' => $email
 	));
     $row = $stmt->fetch(pdo::FETCH_ASSOC);
+    $usid = $row["id"];
+
+    $sql2="SELECT * FROM `authentication` WHERE `user_id` = :userid";
+    $stmt2 = $conn->prepare($sql2);
+
+	$stmt2 -> execute(array(
+		':userid' => $usid
+	));
+    $row2 = $stmt2->fetch(pdo::FETCH_ASSOC);
+
+    $row["password"] = $row2["password"];
 
     if($row){
         return $row;
@@ -137,9 +148,9 @@ function createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$
 
 //functions for login page
 
-function emptyInputlogin($username,$pwd){
+function emptyInputlogin($email,$pwd){
     $reuslt;
-    if(empty($username) || empty($pwd)){
+    if(empty($email) || empty($pwd)){
         $reuslt = true;
     }else{
         $reuslt = false;
@@ -147,15 +158,15 @@ function emptyInputlogin($username,$pwd){
     return $reuslt;
 }
 
-function loginUser($conn,$username,$pwd){
-    $uidExists = UidExists($conn,$username,$username);  //it is not a problem weather user gives email or his username UidExist function check both with or operator
+function loginUser($conn,$email,$pwd){
+    $uidExists = UidExists($conn,$email,$username);  
 
     if($uidExists === false){
         header("location: ../login.php?error=notexists");
         exit();
     }
 
-    $pwdHashed = $uidExists["usersPwd"];
+    $pwdHashed = $uidExists["password"];
     $checkpwd = password_verify($pwd, $pwdHashed);
 
     if($checkpwd === false){
@@ -164,9 +175,9 @@ function loginUser($conn,$username,$pwd){
     }
     else if($checkpwd === true){
         session_start();
-        $_SESSION["userid"] = $uidExists["usersId"];
-        $_SESSION["useruid"] = $uidExists["usersUid"];  
-        $_SESSION["username"] = $uidExists["usersName"]; 
+        $_SESSION["utype"] = $uidExists["usertype_id"];
+        $_SESSION["fname"] = $uidExists["first_name"];  
+        $_SESSION["lname"] = $uidExists["last_name"]; 
         header("location: ../index.php"); //after loging what user see
         exit();
     }
