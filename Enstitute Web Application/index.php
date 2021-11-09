@@ -6,8 +6,14 @@
     <section class="index-categories">
 
         <?php
-            if(isset($_SESSION["useruid"])){
-                echo "<h3>Hello there ".$_SESSION["username"]."</h3>";
+            if(isset($_SESSION["utype"])){
+                echo "<h3>Hello  ".$_SESSION["fname"]." Have a nice day</h3>";
+                if($_SESSION["utype"]=="1"){
+                    echo "<h3>As a STUDENT, you can find the best matching tutor for you</h3>";
+                }else{
+                    echo "<h3>As a TUTOR, you will be requested by many students</h3>";
+                }
+                
             }
         ?>
 
