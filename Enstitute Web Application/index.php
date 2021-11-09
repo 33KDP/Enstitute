@@ -20,7 +20,7 @@
     </section>
 
         <section class="index-categories">
-            <h2>Some Basic categories</h2>
+            <h2>Somebich categories</h2>
             <div class="index-categories-list">
                 <div>
                     <h3>Timeslots</h3>   
