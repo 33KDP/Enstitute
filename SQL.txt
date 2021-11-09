@@ -88,7 +88,7 @@ CREATE TABLE `Message` (
   `user_last_name` varchar(50) NOT NULL,
   `receiver` int NOT NULL,
   `message` text NOT NULL,
-  `time` datetime NOT NULL DEFAULT (now()),
+  `time` datetime NOT NULL DEFAULT now() ,
   `state` tinyint COMMENT '0 - unread, 1 - read',
   `type` tinyint NOT NULL COMMENT '0 - private, 1 - group'
 );
@@ -100,7 +100,7 @@ CREATE TABLE `Request` (
   `tutor_id` int NOT NULL,
   `subject_id` int NOT NULL,
   `message` text NOT NULL,
-  `time` datetime NOT NULL DEFAULT (now()),
+  `time` datetime NOT NULL DEFAULT now() ,
   `state` tinyint DEFAULT 0 COMMENT '0 - pending, 1 - accepted, 2 - rejected',
   `type` bit NOT NULL COMMENT '0 - individual, 1 - group'
 );
@@ -110,7 +110,7 @@ CREATE TABLE `JoinGroupRequest` (
   `student_id` int NOT NULL,
   `group_id` int NOT NULL,
   `message` text NOT NULL,
-  `time` datetime NOT NULL DEFAULT (now()),
+  `time` datetime NOT NULL DEFAULT now() ,
   `state` tinyint DEFAULT 0 COMMENT '0 - pending, 1 - accepted, 2 - rejected'
 );
 
