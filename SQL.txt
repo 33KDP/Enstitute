@@ -189,3 +189,9 @@ ALTER TABLE `TimeSlot` ADD FOREIGN KEY (`tutor_id`) REFERENCES `Tutor` (`id`) ON
 CREATE UNIQUE INDEX `IndividualClass_index_0` ON `IndividualClass` (`student_id`, `tutor_id`, `subject_id`);
 
 CREATE UNIQUE INDEX `GroupClass_index_1` ON `GroupClass` (`group_id`, `tutor_id`);
+
+
+INSERT INTO usertype (type_name)
+VALUES ("student");
+INSERT INTO usertype (type_name)
+VALUES ("tutor");
