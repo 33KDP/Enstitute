@@ -20,7 +20,7 @@
     </section>
 
         <section class="index-categories">
-            <h2>This is Sri Lanka categories</h2>
+            <h2>This is Sri Lanka_---_ categories</h2>
             <div class="index-categories-list">
                 <div>
                     <h3>Timeslots</h3>   
