@@ -4,9 +4,8 @@ $DBUsername = "enstitute" ;
 $DBPassword = "33kdp";
 $DBName = "Enstitute";
 
-try{
-    //$conn = mysqli_connect($servername,$DBUsername,$DBPassword,$DBName);  //-by mysqli
+try {
     $conn = new PDO("mysql:host=$servername;dbname=$DBName", $DBUsername, $DBPassword);
-}catch(PDOException $error){
+} catch(PDOException $error){
     $message = $error->getMessage();  
 }
