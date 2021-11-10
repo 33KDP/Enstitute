@@ -173,6 +173,7 @@ function loginUser($conn,$email,$pwd){
         $_SESSION["utype"] = $uidExists["usertype_id"];
         $_SESSION["fname"] = $uidExists["first_name"];  
         $_SESSION["lname"] = $uidExists["last_name"];
+        $_SESSION["user_id"] = $uidExists["id"];
         if ($uidExists["usertype_id"] == 1){
             header("location: ../Student/index.php"); //Student home page
         } else {
