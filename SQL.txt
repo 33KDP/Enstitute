@@ -1,6 +1,9 @@
 create database Enstitute;
 GRANT ALL ON Enstitute.* TO 'enstitute'@'localhost' IDENTIFIED BY '33kdp';
 GRANT ALL ON Enstitute.* TO 'enstitute'@'127.0.0.1' IDENTIFIED BY '33kdp';
+
+use Enstitute;
+
 CREATE TABLE `User` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `usertype_id` int NOT NULL,
