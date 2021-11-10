@@ -139,7 +139,7 @@ function createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$
 
 
     $profile_id = $conn->lastInsertId();
-    if(profile_id){
+    if($profile_id){
         header("location: ../signup.php?error=none");
     }else{
         header("location: ../signup.php?error=stmtfailed");
