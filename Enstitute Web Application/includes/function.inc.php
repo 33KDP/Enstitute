@@ -183,7 +183,7 @@ function loginUser($conn,$email,$pwd){
         if ($uidExists["usertype_id"] == 1){
             header("location: ../Student/index.php"); //Student home page
         } else {
-            header("location: ../Tutor/home.php"); //Tutor home page
+            header("location: ../tutor/home.php"); //Tutor home page
         }
 
         exit();

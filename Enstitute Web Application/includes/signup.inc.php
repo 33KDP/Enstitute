@@ -13,7 +13,7 @@ if(isset($_POST["submit"])){
 
     require_once 'dbh.inc.php';
     require_once 'function.inc.php';
-
+    global $conn;
     if(emptyInputSignup($fname,$fname,$email,$pwd,$pwdrepeat,$user_type,$grade,$distric,$city) !== false){
         header("location: ../signup.php?error=emptyinput");
         exit();
