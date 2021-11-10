@@ -5,6 +5,25 @@
 
     <section class="index-categories">
 
+        <div class="text-center text-muted delimiter">
+            <?php
+            if(isset($_GET["error"])){
+                if($_GET["error"]=="emptyinput"){
+                    echo "<p>Fill in all fields!</p>" ;
+                }
+                else if($_GET["error"]=="notexists"){
+                    echo "<p>You are not signup</p>" ;
+                }
+                else if($_GET["error"]=="incorrectpw"){
+                    echo "<p>Password is incorrect!</p>" ;
+                }
+                else if($_GET["error"]=="database_connect_error"){
+                    echo "<p>database is not connnected !</p>" ;
+                }
+            }
+            ?>
+        </div>
+
         <?php
             if(isset($_SESSION["utype"])){
                 echo "<h3>Hello  ".$_SESSION["fname"]." Have a nice day</h3>";

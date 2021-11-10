@@ -42,6 +42,9 @@
                         else if($_GET["error"]=="incorrectpw"){
                             echo "<p>Password is incorrect!</p>" ;
                         }
+                        else if($_GET["error"]=="database_connect_error"){
+                            echo "<p>database is not connnected !</p>" ;
+                        }
                     }
                     ?>
                 </div>
