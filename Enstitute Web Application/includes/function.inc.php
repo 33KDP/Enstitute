@@ -1,7 +1,6 @@
 <?php
 
 function emptyInputSignup($fname,$lname,$email,$pwd,$pwdrepeat,$user_type,$grade,$distric,$city){
-    $reuslt;
     if( empty($fname) || empty($lname) || empty($email)  || empty($pwd) || empty($pwdrepeat) || empty($user_type) || empty($distric) || empty($city)){
         $reuslt = true;
     }else{
@@ -19,7 +18,6 @@ function emptyInputSignup($fname,$lname,$email,$pwd,$pwdrepeat,$user_type,$grade
 }
 
 function invalidUid($username){
-    $reuslt;
     if(!preg_match("/^[a-zA-Z0-9]*$/",$username)){
         $reuslt = true;
     }else{
@@ -29,7 +27,6 @@ function invalidUid($username){
 }
 
 function invalidEmail($email){
-    $reuslt;
     if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
         $reuslt = true;
     }else{
@@ -39,7 +36,6 @@ function invalidEmail($email){
 }
 
 function pwdnotMatch($pwd,$pwdrepeat){
-    $reuslt;
     if($pwd !== $pwdrepeat){
         $reuslt = true;
     }else{
@@ -149,7 +145,6 @@ function createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$
 //functions for login page
 
 function emptyInputlogin($email,$pwd){
-    $reuslt;
     if(empty($email) || empty($pwd)){
         $reuslt = true;
     }else{
@@ -159,7 +154,7 @@ function emptyInputlogin($email,$pwd){
 }
 
 function loginUser($conn,$email,$pwd){
-    $uidExists = UidExists($conn,$email,$username);  
+    $uidExists = UidExists($conn,$email);
 
     if($uidExists === false){
         header("location: ../login.php?error=notexists");
@@ -177,8 +172,13 @@ function loginUser($conn,$email,$pwd){
         session_start();
         $_SESSION["utype"] = $uidExists["usertype_id"];
         $_SESSION["fname"] = $uidExists["first_name"];  
-        $_SESSION["lname"] = $uidExists["last_name"]; 
-        header("location: ../index.php"); //after loging what user see
+        $_SESSION["lname"] = $uidExists["last_name"];
+        if ($uidExists["usertype_id"] == 1){
+            header("location: ../Student/index.php"); //Student home page
+        } else {
+            header("location: ../Tutor/home.php"); //Tutor home page
+        }
+
         exit();
     }
 }
