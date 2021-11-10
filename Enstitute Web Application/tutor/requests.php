@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    require_once "../includes/dbh.inc.php";
+    if (!isset($_SESSION['user_id'])){
+        die("ACCESS DENIED");
+    }
 ?>
 
 <html>
