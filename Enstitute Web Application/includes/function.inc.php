@@ -53,25 +53,24 @@ function UidExists($conn,$email){
 		':ue' => $email
 	));
     $row = $stmt->fetch(pdo::FETCH_ASSOC);
-    $usid = $row["id"];
-
-    $sql2="SELECT * FROM `authentication` WHERE `user_id` = :userid";
-    $stmt2 = $conn->prepare($sql2);
-
-	$stmt2 -> execute(array(
-		':userid' => $usid
-	));
-    $row2 = $stmt2->fetch(pdo::FETCH_ASSOC);
-
-    $row["password"] = $row2["password"];
 
     if($row){
+        $usid = $row["id"];
+
+        $sql2="SELECT * FROM `authentication` WHERE `user_id` = :userid";
+        $stmt2 = $conn->prepare($sql2);
+    
+        $stmt2 -> execute(array(
+            ':userid' => $usid
+        ));
+        $row2 = $stmt2->fetch(pdo::FETCH_ASSOC);
+    
+        $row["password"] = $row2["password"];
         return $row;
     }else{
         $reuslt = false;
         return $reuslt;
     }
-
 }
 
 function createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$city){
@@ -129,6 +128,13 @@ function createUser($conn,$fname,$lname,$email,$pwd,$user_type,$grade,$distric,$
             ':uida' => $profile_id,
             ':upassword' => $hashedpwd)
             );
+
+        $sql3="INSERT INTO tutor(`user_id`) VALUES(:uids)";
+        $stmt3  = $conn->prepare($sql3);
+        $stmt3->execute(array(
+            ':uids' => $profile_id)
+            );
+            
     }
 
 
