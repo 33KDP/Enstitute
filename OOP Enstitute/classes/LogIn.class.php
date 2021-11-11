@@ -1,8 +1,9 @@
 <?php
-require_once ("Session.php");
-require_once ("includes/DBConn.php");
-require_once ("tutor/Tutor.php");
-require_once ("student/Student.php");
+require_once("Session.class.php");
+require_once("DBConn.class.php");
+require_once("Tutor.class.php");
+require_once("Student.class.php");
+session_start();
 
 class LogIn
 {
@@ -62,13 +63,14 @@ class LogIn
                 $curSession->setUser($curUser);
                 $curSession->setLoggedIn(true);
                 $_SESSION['session'] = $curSession;
+               header("location: ../tutor/home.php");
            } else {
                echo 'invalid cred';
-               //header("location: ../webapp/index.php");
+               header("location: ../webapp/index.php");
            }
        } else {
            echo 'incomplete cred';
-           //header("location: ../webapp/index.php");
+           header("location: ../webapp/index.php");
        }
     }
 }

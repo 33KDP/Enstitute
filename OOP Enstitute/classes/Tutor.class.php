@@ -1,5 +1,6 @@
 <?php
-require_once('../webapp/includes/User.php');
+require_once "Session.class.php";
+require_once "User.class.php";
 
 class Tutor extends User
 {

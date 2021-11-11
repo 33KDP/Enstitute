@@ -1,6 +1,6 @@
 <?php
-require_once("../includes/User.php");
-require_once ("../includes/Session.php");
+require_once("User.class.php");
+require_once("Session.class.php");
 
 class Student extends User
 {

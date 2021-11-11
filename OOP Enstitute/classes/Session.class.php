@@ -1,5 +1,8 @@
 <?php
-require_once("User.php");
+require_once("User.class.php");
+require_once("Student.class.php");
+require_once("Tutor.class.php");
+
 class Session
 {
     private User $user;

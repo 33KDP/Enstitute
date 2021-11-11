@@ -1,10 +1,11 @@
 <?php
-    require_once "../includes/dbh.inc.php";
+    require_once "../classes/Session.class.php";
+    require_once "../classes/DBConn.class.php";
     session_start();
 
     $curSession = $_SESSION['session'];
-    if ($curSession.isLoggedIn()){
-        $curTutor = $curSession.getUser();
+    if ($curSession->isLoggedIn()){
+        $curTutor = $curSession->getUser();
     }else{
         header("location: ../index.php");
     }
