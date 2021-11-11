@@ -5,6 +5,7 @@
     if (!isset($_SESSION['user_id'])){
         die("ACCESS DENIED");
     }
+
 ?>
 
 <html>
@@ -16,6 +17,7 @@
     <?php require_once "navbar.php"; ?>
 
     <?php
+
         global $conn;
         echo '<div class="position-absolute"  style="top: 90%; left: 90%; transform: translate(-50%, -50%);">';
         echo '<svg type="button" data-bs-toggle="modal" data-bs-target="#addEntry" xmlns="http://www.w3.org/2000/svg" width="70%" height="70%" fill="#0a89a6" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">

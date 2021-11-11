@@ -7,7 +7,10 @@ session_start();
 <html>
 <head>
     <title>Hello User</title>
-    <?php require_once "bootstrap.php";?>
+    <?php
+    require_once "bootstrap.php";
+    require_once "../tutor/navbar.php";
+    ?>
 </head>
 <body>
 
@@ -17,3 +20,5 @@ session_start();
 </div>
 </body>
 </html>
+
+
