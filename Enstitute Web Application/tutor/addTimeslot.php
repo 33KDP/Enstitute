@@ -2,6 +2,9 @@
     session_start();
     require_once "util.php";
     require_once "../includes/dbh.inc.php";
+    if (!isset($_SESSION['user_id'])){
+        die("ACCESS DENIED");
+    }
 
     if (isset($_POST['dayInput']) && isset($_POST['startTime']) && isset($_POST['endTime'])) {
         if ($_POST['startTime'] === "" || $_POST['endTime'] === "" || $_POST['dayInput'] === "") {

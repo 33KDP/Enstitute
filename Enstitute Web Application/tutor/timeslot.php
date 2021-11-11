@@ -19,8 +19,8 @@
     <?php
 
         global $conn;
-        echo '<div class="position-absolute"  style="top: 90%; left: 90%; transform: translate(-50%, -50%);">';
-        echo '<svg type="button" data-bs-toggle="modal" data-bs-target="#addEntry" xmlns="http://www.w3.org/2000/svg" width="70%" height="70%" fill="#0a89a6" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+        echo '<div class="position-fixed"  style="top: 90%; left: 90%; transform: translate(-50%, -50%);">';
+        echo '<svg type="button" data-bs-toggle="modal" data-bs-target="#addEntry" xmlns="http://www.w3.org/2000/svg" width="50%" height="50%" fill="#0a89a6" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                 </svg>';
         echo '</div>';
