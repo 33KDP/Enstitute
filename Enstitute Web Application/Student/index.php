@@ -9,7 +9,7 @@ session_start();
     <title>Hello User</title>
     <?php
     require_once "bootstrap.php";
-    require_once "../tutor/navbar.php";
+    require_once "navbar.php";
     ?>
 </head>
 <body>
