@@ -63,7 +63,7 @@ class LogIn
                 $curSession->setUser($curUser);
                 $curSession->setLoggedIn(true);
                 $_SESSION['session'] = $curSession;
-               header("location: ../OOP_Enstitute/tutor/home.php");
+               header("location: ../OOP_Enstitute/".$url);
            } else {
                echo 'invalid cred';
                header("location: ../webapp/index.php");
