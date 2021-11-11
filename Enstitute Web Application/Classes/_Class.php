@@ -24,6 +24,30 @@ abstract class _Class
     /**
      * @return mixed
      */
+    public function getClass()
+    {
+        return $this->class_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTutor()
+    {
+        return $this->tutor_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubject()
+    {
+        return $this->subject_id;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getOccupiedTimeSlot()
     {
         return $this->occupied_time_slot;
